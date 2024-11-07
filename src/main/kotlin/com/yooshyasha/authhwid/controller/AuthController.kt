@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 import java.util.*
 
 @RestController
-@RequestMapping("v1/auth")
+@RequestMapping("/v1/auth")
 class AuthController(
     private val authService: AuthService,
     private val jwtService: JwtService,
