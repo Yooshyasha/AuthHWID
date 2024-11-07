@@ -17,7 +17,7 @@ class SecurityConfig(
         http.csrf { csrf -> csrf.disable()}
             .authorizeHttpRequests { auth ->
                 auth.requestMatchers("/v1/keys/createKey").authenticated()
-                auth.anyRequest().permitAll()
+                    .anyRequest().permitAll()
             }.csrf { it.disable() }
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
         return http.build()
