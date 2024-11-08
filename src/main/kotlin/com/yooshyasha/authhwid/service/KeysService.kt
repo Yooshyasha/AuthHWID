@@ -9,11 +9,15 @@ import java.util.*
 class KeysService(
     private val keysRepository: KeysRepository
 ) {
-    fun checkKey(key: Key, hwid: String) : Boolean {
+    fun checkKey(key: Key, hwid: String?) : Boolean {
         return key.HWID == hwid
     }
 
     fun addKey(key: Key) {
+        keysRepository.save(key)
+    }
+
+    fun updateKey(key: Key) {
         keysRepository.save(key)
     }
 
@@ -22,10 +26,10 @@ class KeysService(
     }
 
     fun getKey(key: String) : Key? {
-        return keysRepository.getByKey(key)
+        return keysRepository.findByKey(key)
     }
 
     fun generateKey() : Key {
-        return Key(HWID = UUID.randomUUID().toString())
+        return Key(key = UUID.randomUUID().toString())
     }
 }
